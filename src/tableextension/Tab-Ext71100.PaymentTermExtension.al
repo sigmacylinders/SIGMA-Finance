@@ -4,13 +4,13 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
     fields
     {
         // Add changes to table fields here
-        field(71101; "Transh1"; Option)
+        field(71100; "Transh1"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ","Advance","OA","DP";
         }
 
-        field(71102; "Due Date Calculation Days1"; DateFormula)
+        field(71101; "Due Date Calculation Days1"; DateFormula)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -21,7 +21,7 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
             end;
         }
 
-        field(71103; "Transh1 %"; Integer)
+        field(71102; "Transh1 %"; Integer)
         {
             DataClassification = ToBeClassified;
             MinValue = 0;
@@ -34,7 +34,7 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
             end;
         }
 
-        field(71104; "Due Date Calculation From 1"; Text[100])
+        field(71103; "Due Date Calculation From 1"; Text[100])
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -45,13 +45,13 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
             end;
         }
 
-        field(71105; "Transh2"; Option)
+        field(71104; "Transh2"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ","Advance","OA","DP";
         }
 
-        field(71106; "Due Date Calculation Days2"; DateFormula)
+        field(71105; "Due Date Calculation Days2"; DateFormula)
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
@@ -62,7 +62,7 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
             end;
         }
 
-        field(71107; "Transh2 %"; Integer)
+        field(71106; "Transh2 %"; Integer)
         {
             DataClassification = ToBeClassified;
             MinValue = 0;
@@ -75,37 +75,37 @@ tableextension 71100 "Payment Term Extension" extends "Payment Terms"
             end;
         }
 
-        field(71108; "Due Date Calculation From 2"; Text[100])
+        field(71107; "Due Date Calculation From 2"; Text[100])
         {
             DataClassification = ToBeClassified;
             trigger OnValidate()
             var
                 myInt: Integer;
             begin
-            
+
                 BuildDescription(Rec);
             end;
         }
 
-        field(71109; "Transh3"; Option)
+        field(71108; "Transh3"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = " ","Advance","OA","DP";
         }
 
-        field(71110; "Due Date Calculation Days3"; DateFormula)
+        field(71109; "Due Date Calculation Days3"; DateFormula)
         {
             DataClassification = ToBeClassified;
         }
 
-        field(71111; "Transh3 %"; Integer)
+        field(71110; "Transh3 %"; Integer)
         {
             DataClassification = ToBeClassified;
             MinValue = 0;
             MaxValue = 100;
         }
 
-        field(71112; "Due Date Calculation From 3"; Text[100])
+        field(71111; "Due Date Calculation From 3"; Text[100])
         {
             DataClassification = ToBeClassified;
         }
