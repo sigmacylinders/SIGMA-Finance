@@ -24,9 +24,35 @@ table 71100 "LC Header"
             //     Caption = 'Received From';
             // END
 
-            TableRelation = if ("Transaction Type" = const(Purchase)) "Purchase Header"
+            TableRelation = if ("Transaction Type" = const(Purchase)) "Purchase Header"."No." where("Document Type" = const(Order))
             else
-            if ("Transaction Type" = const(Sale)) "Sales Header";
+            if ("Transaction Type" = const(Sale)) "Sales Header"."No." where("Document Type" = const(Order));
+
+            trigger OnValidate()
+            var
+                PurchaseHeader: Record "Purchase Header";
+                SalesHEader: Record "Sales Header";
+            begin
+                if "Issued To/Received From" <> '' then begin
+                    if "Transaction Type" = "Transaction Type"::Purchase then begin
+                        // Add logic for Purchase, e.g., validate against Purchase Header
+                        Clear(PurchaseHeader);
+                        IF PurchaseHeader.Get(PurchaseHeader."Document Type"::Order, Rec."Issued To/Received From") then begin
+                            PurchaseHeader."LC No." := Rec."No.";
+                            PurchaseHeader.Modify();
+                        end;
+                    end
+                    else
+                        if "Transaction Type" = "Transaction Type"::Sale then begin
+                            // Add logic for Sale, e.g., validate against Sales Header
+                            Clear(SalesHEader);
+                            IF SalesHEader.Get(SalesHEader."Document Type"::Order, Rec."Issued To/Received From") then begin
+                                SalesHEader."LC No." := Rec."No.";
+                                SalesHEader.Modify();
+                            end;
+                        end;
+                end;
+            end;
         }
         field(6; "Issuing Bank"; Code[20])
         {

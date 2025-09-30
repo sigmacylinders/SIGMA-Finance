@@ -33,6 +33,32 @@ table 71101 "Bank Guarantee Header"
             TableRelation = if ("Transaction Type" = const(Purchase)) "Purchase Header"
             else
             if ("Transaction Type" = const(Sale)) "Sales Header";
+
+            trigger OnValidate()
+            var
+                PurchaseHeader: Record "Purchase Header";
+                SalesHEader: Record "Sales Header";
+            begin
+                if "Issued To/Received From" <> '' then begin
+                    if "Transaction Type" = "Transaction Type"::Purchase then begin
+                        // Add logic for Purchase, e.g., validate against Purchase Header
+                        Clear(PurchaseHeader);
+                        IF PurchaseHeader.Get(PurchaseHeader."Document Type"::Order, Rec."Issued To/Received From") then begin
+                            PurchaseHeader."BG No." := Rec."BG No.";
+                            PurchaseHeader.Modify();
+                        end;
+                    end
+                    else
+                        if "Transaction Type" = "Transaction Type"::Sale then begin
+                            // Add logic for Sale, e.g., validate against Sales Header
+                            Clear(SalesHEader);
+                            IF SalesHEader.Get(SalesHEader."Document Type"::Order, Rec."Issued To/Received From") then begin
+                                SalesHEader."BG No." := Rec."BG No.";
+                                SalesHEader.Modify();
+                            end;
+                        end;
+                end;
+            end;
         }
         field(5; "Issuing Bank"; Code[20])
         {
