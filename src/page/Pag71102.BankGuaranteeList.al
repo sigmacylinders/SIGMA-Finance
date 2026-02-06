@@ -4,6 +4,9 @@ page 71102 "Bank Guarantee List"
     SourceTable = "Bank Guarantee Header";
     ApplicationArea = All;
     SourceTableView = sorting("BG No.");
+    CardPageId = "Bank Guarantee Card";
+    UsageCategory = Lists;
+
 
     layout
     {

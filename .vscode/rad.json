@@ -1,1 +1,1 @@
-﻿{"Added":[],"Modified":[],"Removed":[]}
+﻿{"Added":[],"Modified":[{"Id":71102,"Kind":10,"Name":"SIGMA Lookup - V2","Namespace":""},{"Id":71108,"Kind":16,"Name":"Payment journal Fin ext","Namespace":""},{"Id":71107,"Kind":16,"Name":"Cash journal Fin ext","Namespace":""},{"Id":71106,"Kind":16,"Name":"General journal Fin ext","Namespace":""},{"Id":71100,"Kind":11,"Name":"SIGMA Finance Subs","Namespace":""},{"Id":71104,"Kind":12,"Name":"SIGMA Lookup - V2","Namespace":""}],"Removed":[{"Id":71100,"Kind":26,"Name":"SIGMAFINANCE","Namespace":"GeneratedPermission"}]}

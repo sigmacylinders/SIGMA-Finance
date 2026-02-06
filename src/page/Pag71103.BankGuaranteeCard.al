@@ -1,7 +1,9 @@
 page 71103 "Bank Guarantee Card"
 {
     PageType = Card;
-    SourceTable = "Bank Guarantee Header"; // Assuming a table for bank guarantees exists
+    SourceTable = "Bank Guarantee Header";
+ // Assuming a table for bank guarantees exists    ApplicationArea = All;
+
 
     layout
     {

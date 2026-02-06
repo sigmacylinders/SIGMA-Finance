@@ -103,6 +103,13 @@ table 71101 "Bank Guarantee Header"
         {
             DataClassification = ToBeClassified;
         }
+        field(14; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            Editable = false;
+
+
+        }
     }
 
     keys
@@ -112,4 +119,29 @@ table 71101 "Bank Guarantee Header"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+
+
+        NoSeries: Codeunit "No. Series";
+        NoSeriesCode: Code[20];
+        IsHandled: Boolean;
+        GLSetup: Record "General Ledger Setup";
+
+    begin
+        if "BG No." = '' then begin
+            GLSetup.Get();
+            GLSetup.TestField("BG No. Series");
+
+            if NoSeries.AreRelated(GLSetup."BG No. Series", xRec."No. Series") then
+                Rec."No. Series" := xRec."No. Series"
+            else
+                Rec."No. Series" := GLSetup."BG No. Series";
+
+            Rec."BG No." := NoSeries.GetNextNo(Rec."No. Series");
+
+            //   end;
+        end;
+    end;
 }

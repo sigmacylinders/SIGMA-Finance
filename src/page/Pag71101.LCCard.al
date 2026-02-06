@@ -3,7 +3,7 @@ page 71101 "LC Card"
     PageType = Card;
     SourceTable = "LC Header";
     ApplicationArea = All;
-    UsageCategory = Administration;
+
 
     layout
     {
@@ -12,7 +12,7 @@ page 71101 "LC Card"
             group(General)
             {
                 field("No."; Rec."No.") { }
-                field("LC No."; Rec."LC No.") { }
+
                 field(Description; REc.Description) { }
                 field("Transaction Type"; Rec."Transaction Type") { }
                 field("Issued To/Received From"; Rec."Issued To/Received From") { }
@@ -28,7 +28,7 @@ page 71101 "LC Card"
                 field("Revolving Cr. Limit Types"; Rec."Revolving Cr. Limit Types") { }
                 field("Currency Code"; Rec."Currency Code") { }
                 field("Exchange Rate"; Rec."Exchange Rate") { }
-                field("LC Value"; Rec."LC Value") { }
+
             }
 
             group(Invoicing)

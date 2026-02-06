@@ -10,7 +10,7 @@ table 71100 "LC Header"
         {
             DataClassification = CustomerContent;
         }
-        field(2; "LC No."; Code[20]) { }
+        // field(2; "LC No."; Code[20]) { }
         field(3; Description; Text[100]) { }
         field(4; "Transaction Type"; Option)
         {
@@ -88,6 +88,13 @@ table 71100 "LC Header"
         field(17; "LC Value"; Decimal) { }
         field(18; "Value Utilised"; Decimal) { }
         field(19; "Remaining Amount"; Decimal) { }
+        field(20; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            Editable = false;
+
+
+        }
     }
 
     keys
@@ -97,4 +104,29 @@ table 71100 "LC Header"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+
+
+        NoSeries: Codeunit "No. Series";
+        NoSeriesCode: Code[20];
+        IsHandled: Boolean;
+        GLSetup: Record "General Ledger Setup";
+
+    begin
+        if "No." = '' then begin
+            GLSetup.Get();
+            GLSetup.TestField("LC No. Series");
+
+            if NoSeries.AreRelated(GLSetup."LC No. Series", xRec."No. Series") then
+                Rec."No. Series" := xRec."No. Series"
+            else
+                Rec."No. Series" := GLSetup."LC No. Series";
+
+            Rec."No." := NoSeries.GetNextNo(Rec."No. Series");
+
+            //   end;
+        end;
+    end;
 }

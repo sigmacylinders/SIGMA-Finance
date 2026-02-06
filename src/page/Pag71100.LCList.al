@@ -4,6 +4,7 @@ page 71100 "LC List"
     SourceTable = "LC Header";
     ApplicationArea = All;
     UsageCategory = Lists;
+    CardPageId = "LC Card";
 
     layout
     {
@@ -12,7 +13,7 @@ page 71100 "LC List"
             repeater(Group)
             {
                 field("No."; Rec."No.") { }
-                field("LC No."; Rec."LC No.") { }
+
                 field(Description; Rec.Description) { }
                 field("Transaction Type"; Rec."Transaction Type") { }
                 field("Issuing Bank"; Rec."Issuing Bank") { }
